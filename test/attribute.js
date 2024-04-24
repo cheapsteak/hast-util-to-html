@@ -1320,6 +1320,16 @@ test('`element` attributes', async (t) => {
           ),
           '<i title="3=5\0"></i>'
         )
+
+        assert.deepEqual(
+          toHtml(
+            u('element', {tagName: 'a', properties: {href: 'https://a?b&c'}}, []),
+            {
+              allowParseErrors: true
+            }
+          ),
+          '<a href="https://a?b&c"></a>'
+        )
       }
     )
 
