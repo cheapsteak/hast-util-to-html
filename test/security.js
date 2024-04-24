@@ -32,6 +32,19 @@ test('security', async function (t) {
     }
   )
 
+  await t.test(
+    'should make sure entities render (unsafe)',
+    async function () {
+      assert.equal(
+        toHtml(h('a', {href: 'https://a?b&c'})),
+        '<a href="https://a?b&c">',
+        {
+          allowParseErrors: true
+        }
+      )
+    }
+  )
+
   await t.test('should make sure texts are encoded (safe)', async function () {
     assert.equal(
       toHtml(u('root', u('text', '<script>alert(1)</script>'))),
